@@ -1,0 +1,58 @@
+﻿@page
+@model EF_Templated_Commerce.Pages.Items.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+
+<form>
+    <p>
+        Title: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemModel[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemModel[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemModel[0].Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ItemModel) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id" class="btn-primary bi-pencil-square" ></a> 
+                <a asp-page="./Details" asp-route-id="@item.Id" class="btn-info bi-card-list"></a> 
+                <a asp-page="./Delete" asp-route-id="@item.Id" class="btn-danger bi-trash"></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
